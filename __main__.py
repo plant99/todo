@@ -13,6 +13,9 @@ parser.add_argument('-d','--delete', type=int,help="Delete a task")
 parser.add_argument('-e','--edit', type=int,help="Edit a task")
 args = parser.parse_args()
 
+#check for enabled flag
+f = open(dir_path+'/todo.txt', 'r')
+flag = f.read().split('\n')[0]
 
 def modify(flag):
 	f = open(dir_path+'/todo.txt', 'r')
@@ -36,6 +39,10 @@ if args.enable:
 if args.disable:
 	modify('d')
 	sys.exit()
+
+if(flag is 'd'):
+	sys.exit()
+
 
 if args.newtask:
 	priority = raw_input("Priority on a scale of 1-3?")
